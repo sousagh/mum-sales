@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/../mum-sales/mum-sales.iml" filepath="$PROJECT_DIR$/../mum-sales/mum-sales.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mum-sales-framework.iml" filepath="$PROJECT_DIR$/mum-sales-framework.iml" />
-    </modules>
-  </component>
-</project>

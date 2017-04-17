@@ -1,8 +1,9 @@
 package edu.mum.asd.ui.controller;
 
-import edu.mum.asd.framework.ComponentTest;
 import edu.mum.asd.framework.di.AutoInjected;
 import edu.mum.asd.framework.di.BaseController;
+import edu.mum.asd.framework.security.UserData;
+import edu.mum.asd.service.UserNamePwdAuthenticationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -15,7 +16,7 @@ import javafx.scene.control.TextField;
 public class LoginController extends BaseController{
 
     @AutoInjected
-    private ComponentTest componentTest;
+    private UserNamePwdAuthenticationService authenticationService;
 
     @FXML
     private TextField userNameField;
@@ -26,7 +27,9 @@ public class LoginController extends BaseController{
     @FXML
     public void loginAction(ActionEvent event){
         System.out.println(this.userNameField.getText() + " - " + this.passwordField.getText());
-        System.out.print(componentTest);
+        UserData userData = new UserData(this.userNameField.getText() , this.passwordField.getText());
+
+        authenticationService.authenticate(userData);
     }
 
 }

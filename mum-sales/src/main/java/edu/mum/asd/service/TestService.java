@@ -7,4 +7,7 @@ import edu.mum.asd.framework.di.InjectableComponent;
  */
 @InjectableComponent
 public class TestService {
+    public void print() {
+        System.out.println("Test!");
+    }
 }

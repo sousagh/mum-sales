@@ -6,8 +6,10 @@ import edu.mum.asd.framework.security.UserData;
 import edu.mum.asd.service.UserNamePwdAuthenticationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 /**
@@ -28,6 +30,11 @@ public class LoginController extends BaseController{
     public void loginAction(ActionEvent event){
         System.out.println(this.userNameField.getText() + " - " + this.passwordField.getText());
         UserData userData = new UserData(this.userNameField.getText() , this.passwordField.getText());
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        authenticationService.setStage(stage);
 
         authenticationService.authenticate(userData);
     }

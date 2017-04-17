@@ -6,7 +6,12 @@ import edu.mum.asd.framework.data.read.QueryAdapter;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.security.UserData;
 import edu.mum.asd.framework.security.UserNamePasswordAbstractAuthenticationService;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -14,6 +19,8 @@ import java.util.Optional;
  */
 @InjectableComponent
 public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAuthenticationService{
+
+    private Stage stage;
 
     @DataAccess(collection = UserData.class)
     private Repository repository;
@@ -25,7 +32,19 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
 
     @Override
     protected void onSuccess() {
-        System.out.println("Success!");
+
+        try {
+            System.out.println("Success!");
+            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -39,5 +58,9 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
                 .findOne();
 
         return user.isPresent();
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

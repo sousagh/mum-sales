@@ -36,10 +36,11 @@ public class QueryAdapterImpl implements QueryAdapter {
 
         FindIterable<Document> documents = collection.find(example);
         Document first = documents.first();
-        Object id = first.remove("_id");
 
         try{
             if(first != null){
+                Object id = first.remove("_id");
+
                 return Optional.of((T) mapper.convertValue(first, type));
             }
         } catch (Exception e){

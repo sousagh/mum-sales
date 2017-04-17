@@ -5,7 +5,6 @@ import edu.mum.asd.framework.data.MongoAccessImpl;
 import edu.mum.asd.framework.data.MongodbRepositoryImpl;
 import edu.mum.asd.framework.data.Repository;
 import edu.mum.asd.framework.di.AutoInjected;
-import edu.mum.asd.framework.di.BaseController;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.exception.ApplicationContextException;
 import org.reflections.Reflections;
@@ -119,5 +118,7 @@ public class ApplicationContext {
         return null;
     }
 
-
+    public Repository getCollection(Class<?> clazz) {
+        return repositories.get(clazz);
+    }
 }

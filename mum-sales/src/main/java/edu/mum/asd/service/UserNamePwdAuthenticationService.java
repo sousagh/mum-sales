@@ -9,9 +9,13 @@ import edu.mum.asd.framework.security.UserNamePasswordAbstractAuthenticationServ
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
 
 /**
@@ -21,6 +25,8 @@ import java.util.Optional;
 public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAuthenticationService{
 
     private Stage stage;
+
+    private static BorderPane root;
 
     @DataAccess(collection = UserData.class)
     private Repository repository;
@@ -34,8 +40,20 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
     protected void onSuccess() {
 
         try {
+
+            root = new BorderPane();
+
+            MenuBar bar = FXMLLoader.load( getClass().getResource("/menu.fxml") );
+            AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/home.fxml"));
+
+
+            // constructing our scene using the static root
+
+            root.setTop(bar);
+            root.setCenter(paneOne);
+
             System.out.println("Success!");
-            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
+//            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -45,6 +63,9 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
             e.printStackTrace();
         }
 
+    }
+    public static BorderPane getRoot() {
+        return root;
     }
 
     @Override

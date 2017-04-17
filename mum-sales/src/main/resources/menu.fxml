@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="edu.mum.asd.ui.controller.MenuController">
+  <menus>
+    <Menu mnemonicParsing="false" text="Order">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#switchToNewPurchase" text="New Order" />
+         </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Products">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#switchToRegisterProduct" text="Register Product" />
+         </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Stock">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#switchToManageStock" text="Manage Stock" />
+         </items>
+    </Menu>
+  </menus>
+</MenuBar>

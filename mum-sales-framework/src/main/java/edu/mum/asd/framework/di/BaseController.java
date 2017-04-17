@@ -1,8 +1,9 @@
 package edu.mum.asd.framework.di;
 
 import edu.mum.asd.framework.ApplicationContext;
-
-import java.lang.reflect.Field;
+import edu.mum.asd.framework.validation.FormValidator;
+import edu.mum.asd.framework.validation.FormValidatorImpl;
+import edu.mum.asd.framework.validation.ValidationResult;
 
 /**
  * Created by gustavosousa on 4/13/17.
@@ -15,6 +16,13 @@ public class BaseController {
         TODO implement a real visitor
          */
         applicationContext.applyContext(this);
+    }
+
+    public ValidationResult validate(){
+
+        FormValidator validator = new FormValidatorImpl(this);
+
+        return validator.validate();
     }
 
 }

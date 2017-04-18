@@ -7,6 +7,8 @@ import edu.mum.asd.framework.data.Repository;
 import edu.mum.asd.framework.di.AutoInjected;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.exception.ApplicationContextException;
+import edu.mum.asd.framework.validation.FormValidator;
+import edu.mum.asd.framework.validation.FormValidatorImpl;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
@@ -24,6 +26,8 @@ public class ApplicationContext {
     private static String scanPath = null;
 
     private final MongoAccessImpl mongoAccess;
+
+    private final FormValidator formValidator;
 
     private Map<Class<?>, Object> objectPool = new HashMap<>();
 
@@ -43,6 +47,8 @@ public class ApplicationContext {
         populatePool();
 
         this.mongoAccess = new MongoAccessImpl();
+
+        this.formValidator = new FormValidatorImpl();
 
         objectPool.forEach( (key, value) -> applyContext(value));
 
@@ -120,5 +126,9 @@ public class ApplicationContext {
 
     public Repository getCollection(Class<?> clazz) {
         return repositories.get(clazz);
+    }
+
+    public FormValidator getFormValidator() {
+        return formValidator;
     }
 }

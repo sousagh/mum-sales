@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,12 +29,14 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
 
     private static BorderPane root;
 
+    private Text message;
+
     @DataAccess(collection = UserData.class)
     private Repository repository;
 
     @Override
     protected void onFailure() {
-        System.out.println("Failure!");
+        message.setText("Authentication Failure.");
     }
 
     @Override
@@ -46,14 +49,8 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
             MenuBar bar = FXMLLoader.load( getClass().getResource("/menu.fxml") );
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/home.fxml"));
 
-
-            // constructing our scene using the static root
-
             root.setTop(bar);
             root.setCenter(paneOne);
-
-            System.out.println("Success!");
-//            Parent root = FXMLLoader.load(getClass().getResource("/home.fxml"));
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -64,6 +61,7 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
         }
 
     }
+
     public static BorderPane getRoot() {
         return root;
     }
@@ -83,5 +81,9 @@ public class UserNamePwdAuthenticationService extends UserNamePasswordAbstractAu
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public void setMessage(Text message) {
+        this.message = message;
     }
 }

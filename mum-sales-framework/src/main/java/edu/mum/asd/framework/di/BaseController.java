@@ -20,9 +20,11 @@ public class BaseController {
 
     public ValidationResult validate(){
 
-        FormValidator validator = new FormValidatorImpl(this);
+        ApplicationContext applicationContext = ApplicationContext.getInstance();
 
-        return validator.validate();
+        FormValidator validator = applicationContext.getFormValidator();
+
+        return validator.validate(this);
     }
 
 }

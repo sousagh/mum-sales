@@ -6,11 +6,14 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import edu.mum.asd.framework.data.read.QueryAdapter;
 import edu.mum.asd.framework.data.read.QueryAdapterImpl;
 import edu.mum.asd.framework.di.InjectableComponent;
+import edu.mum.asd.framework.domain.StorableEntity;
 import edu.mum.asd.framework.exception.DatabaseException;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -20,7 +23,7 @@ import java.lang.reflect.Type;
  * Created by gustavosousa on 4/15/17.
  * TODO add Decorator Behavior
  */
-public class MongodbRepositoryImpl<T> implements Repository<T> {
+public class MongodbRepositoryImpl<T extends StorableEntity> implements Repository<T> {
 
     final private ObjectMapper mapper = new ObjectMapper();
     private final Class<?> aClass;
@@ -43,7 +46,16 @@ public class MongodbRepositoryImpl<T> implements Repository<T> {
         try {
             final String userJson = mapper.writeValueAsString(object);
             final Document objectDoc = Document.parse(userJson);
-            collection.insertOne(objectDoc);
+
+            if (object.getId() != null){
+
+                ObjectId objectId = new ObjectId(object.getId());
+                objectDoc.append("_id", objectId);
+                collection.replaceOne(Filters.eq("_id", objectId), objectDoc);
+
+            } else{
+                collection.insertOne(objectDoc);
+            }
         } catch (JsonProcessingException e) {
             throw new DatabaseException("Error while saving document", e);
         }

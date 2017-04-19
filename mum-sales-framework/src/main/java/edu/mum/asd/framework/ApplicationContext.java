@@ -29,6 +29,8 @@ public class ApplicationContext {
 
     private final FormValidator formValidator;
 
+    private Map<String, Object> extraParams = new HashMap<>();
+
     private Map<Class<?>, Object> objectPool = new HashMap<>();
 
     private Map<Class<?>, Repository> repositories = new HashMap<>();
@@ -130,5 +132,13 @@ public class ApplicationContext {
 
     public FormValidator getFormValidator() {
         return formValidator;
+    }
+
+    public void putExtraParam(String name, Object object){
+        this.extraParams.put(name, object);
+    }
+
+    public Object getExtraParam(String name){
+        return extraParams.get(name);
     }
 }

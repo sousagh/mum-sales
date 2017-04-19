@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="276.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.asd.ui.controller.StockPopupController">
+   <children>
+      <Text layoutX="263.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="72.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+      <Text layoutX="72.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+      <Text layoutX="72.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" />
+      <Text layoutX="331.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Currently in stock:" />
+      <Text fx:id="nameText" layoutX="164.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="descriptionText" layoutX="164.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="398.3916007578373" />
+      <Text fx:id="priceText" layoutX="164.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="stockText" layoutX="468.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextField fx:id="updateText" layoutX="196.0" layoutY="210.0" onAction="#updateStock" />
+      <Text layoutX="72.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update stock" />
+      <Button layoutX="414.0" layoutY="210.0" mnemonicParsing="false" onAction="#updateStock" text="Update" />
+   </children>
+</AnchorPane>

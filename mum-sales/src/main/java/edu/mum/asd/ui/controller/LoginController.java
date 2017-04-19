@@ -65,5 +65,4 @@ public class LoginController extends BaseController{
             message.setText(builder.toString());
         }
     }
-
 }

@@ -15,6 +15,9 @@
          <items>
             <MenuItem mnemonicParsing="false" onAction="#switchToRegisterProduct" text="Register Product" />
          </items>
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#switchToRemoveProduct" text="Remove Product" />
+        </items>
     </Menu>
     <Menu mnemonicParsing="false" text="Stock">
          <items>

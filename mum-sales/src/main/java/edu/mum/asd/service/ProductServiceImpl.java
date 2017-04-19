@@ -7,13 +7,14 @@ import edu.mum.asd.framework.data.read.QueryAdapter;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.exception.DatabaseException;
 import edu.mum.asd.framework.security.UserData;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,8 @@ import java.util.Optional;
 /**
  * Created by Orgil on 4/18/2017.
  */
+
+
 @InjectableComponent
 
 public class ProductServiceImpl implements ProductService
@@ -41,7 +44,6 @@ public class ProductServiceImpl implements ProductService
             prod.setName(name);
             prod.setPrice(price);
             prod.setQuantity(quantity);
-
             try {
                 repository.save(prod);
             } catch (DatabaseException e) {
@@ -75,6 +77,7 @@ public class ProductServiceImpl implements ProductService
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
+
     }
 }
 

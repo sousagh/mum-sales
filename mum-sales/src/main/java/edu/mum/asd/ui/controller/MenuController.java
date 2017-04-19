@@ -71,4 +71,8 @@ public class MenuController {
         }
 
     }
+
+    public void switchToRemoveProduct(ActionEvent actionEvent) {
+
+    }
 }

@@ -24,5 +24,7 @@
       <TextField fx:id="updateText" layoutX="196.0" layoutY="210.0" onAction="#updateStock" />
       <Text layoutX="72.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update stock" />
       <Button layoutX="414.0" layoutY="210.0" mnemonicParsing="false" onAction="#updateStock" text="Update" />
+      <Text fx:id="successMessage" fill="#1db21a" layoutX="374.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Success!" visible="false" />
+      <Text fx:id="errorMessage" fill="#c91909" layoutX="349.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error!" visible="false" />
    </children>
 </AnchorPane>

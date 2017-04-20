@@ -18,6 +18,8 @@ import org.bson.types.ObjectId;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import static com.mongodb.client.model.Filters.eq;
+
 
 /**
  * Created by gustavosousa on 4/15/17.
@@ -51,7 +53,7 @@ public class MongodbRepositoryImpl<T extends StorableEntity> implements Reposito
 
                 ObjectId objectId = new ObjectId(object.getId());
                 objectDoc.append("_id", objectId);
-                collection.replaceOne(Filters.eq("_id", objectId), objectDoc);
+                collection.replaceOne(eq("_id", objectId), objectDoc);
 
             } else{
                 collection.insertOne(objectDoc);
@@ -61,11 +63,22 @@ public class MongodbRepositoryImpl<T extends StorableEntity> implements Reposito
         }
     }
 
+
+    public void remove(T object) {
+System.out.println("id: "+object.getId()+" "+object);
+
+            if (object.getId() != null){
+                collection.deleteOne(eq("_id", new ObjectId(object.getId())));
+                System.out.println("nnnnnnnnnnnnnn");
+            }
+        //collection.deleteOne(eq("name", );
+        System.out.println("mmmmmmmmmmmmmm");
+    }
+
     @Override
     public QueryAdapter createQueryAdapter() {
 
         return new QueryAdapterImpl(collection, aClass);
     }
-
 
 }

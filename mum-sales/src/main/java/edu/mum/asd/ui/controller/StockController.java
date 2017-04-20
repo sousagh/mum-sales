@@ -111,6 +111,5 @@ public class StockController extends BaseController {
             });
             return row;
         });
-
     }
 }

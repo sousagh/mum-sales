@@ -24,5 +24,10 @@
             <MenuItem mnemonicParsing="false" onAction="#switchToManageStock" text="Manage Stock" />
          </items>
     </Menu>
+    <Menu mnemonicParsing="false" text="Report">
+          <items>
+              <MenuItem mnemonicParsing="false" onAction="#switchToReport" text="Produce Report" />
+          </items>
+    </Menu>
   </menus>
 </MenuBar>

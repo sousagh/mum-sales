@@ -57,8 +57,6 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -72,10 +70,35 @@ public class MenuController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void switchToRemoveProduct(ActionEvent actionEvent) {
 
+        BorderPane root = UserNamePwdAuthenticationService.getRoot();
+
+        try {
+            AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/removeProducts.fxml"));
+            root.setCenter(paneOne);
+
+            System.out.println("switchToRemoveProduct");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToReport(ActionEvent actionEvent) {
+
+        BorderPane root = UserNamePwdAuthenticationService.getRoot();
+
+        try {
+            AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/produceReport.fxml"));
+            root.setCenter(paneOne);
+
+            System.out.println("switchToRemoveProduct");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

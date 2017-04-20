@@ -12,6 +12,6 @@ public interface Repository <T> {
      void deleteAll();
 
      void save(T object) throws DatabaseException;
-
+     void remove(T object);
      QueryAdapter createQueryAdapter();
 }

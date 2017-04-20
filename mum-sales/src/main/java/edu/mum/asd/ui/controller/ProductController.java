@@ -9,10 +9,7 @@ import edu.mum.asd.framework.di.BaseController;
 import edu.mum.asd.framework.security.UserData;
 import edu.mum.asd.service.ProductService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-
+import javafx.scene.control.*;
 import java.util.Optional;
 /*
  * Created by gustavosousa on 4/17/17.
@@ -32,10 +29,8 @@ public class ProductController extends BaseController{
 
     @FXML
     private Label label;
-    @FXML
+    //@FXML
     private Button button7;
-    @FXML
-    private Button add_product;
     @FXML
     private TextField quantity;
     @FXML
@@ -44,6 +39,7 @@ public class ProductController extends BaseController{
     private TextField new_product;
     @FXML
     private TextField description;
+
     @FXML
     void add_function()
     {
@@ -58,9 +54,6 @@ public class ProductController extends BaseController{
 
         Optional<UserData> user = adapter
                 .eq("name", new_product.getText())
-                // .eq("description", prod.getDescription())
-                // .eq("quantity", prod.getQuantity())
-                // .eq("price", prod.getPrice())
                 .findOne();
 
         System.out.println(user.isPresent());

@@ -61,6 +61,12 @@ public class ProductServiceImpl implements ProductService
             System.out.println(user.isPresent());
         }
 
+    public void removeProduct(Product product)
+    {
+            repository.remove(product);
+System.out.println("end of removeProduct!!");
+    }
+
     @Override
     public List<Product> findByName(String criterion) {
 
@@ -76,7 +82,5 @@ public class ProductServiceImpl implements ProductService
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-
     }
 }
-

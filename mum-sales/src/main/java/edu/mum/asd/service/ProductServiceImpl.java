@@ -25,7 +25,6 @@ import java.util.Optional;
 
 
 @InjectableComponent
-
 public class ProductServiceImpl implements ProductService
 {
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.mum.asd.ui.controller.OrderItemController">
+   <children>
+      <Text layoutX="102.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Order Item" />
+      <Text layoutX="25.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product:" />
+      <Text layoutX="25.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" />
+      <Text layoutX="25.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount:" />
+      <Text fx:id="productNameText" layoutX="105.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name" />
+      <Text fx:id="productPriceText" layoutX="105.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price" />
+      <TextField fx:id="productAmount" layoutX="105.0" layoutY="125.0" onAction="#onEnter" prefHeight="27.0" prefWidth="106.0" />
+      <Text layoutX="214.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" />
+      <Text fx:id="quantityText" layoutX="227.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="messageText" fill="#f21a1a" layoutX="25.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+   </children>
+</AnchorPane>

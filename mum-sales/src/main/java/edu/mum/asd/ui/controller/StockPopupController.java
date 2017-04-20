@@ -48,6 +48,8 @@ public class StockPopupController extends BaseController{
     @AutoInjected
     private ProductService productService;
 
+    private StockController parentController;
+
     @FXML
     public void initialize() {
 
@@ -90,5 +92,9 @@ public class StockPopupController extends BaseController{
             errorMessage.setText(validate.getErrors().get(0).getMessage());
         }
 
+    }
+
+    public void setParentController(StockController parentController) {
+        this.parentController = parentController;
     }
 }

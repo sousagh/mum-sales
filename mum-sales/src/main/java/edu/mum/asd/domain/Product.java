@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 /**
  * Created by Orgil on 4/18/2017.
  */
-public class Product extends StorableEntity{
+public class Product extends StorableEntity implements Cloneable{
 
     private int quantity;
     private double price;
@@ -45,5 +45,14 @@ public class Product extends StorableEntity{
         this.description = description;
     }
 
-
+    /**
+     * Prototype!
+     */
+    public Object clone(){
+        Product other = new Product();
+        other.setDescription(this.description);
+        other.setName(this.getName());
+        other.setPrice(this.price);
+        return other;
+    }
 }

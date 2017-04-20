@@ -5,4 +5,5 @@ package edu.mum.asd.ui.util;
  */
 public class ApplicationConstants {
     public static final String PRODUCT = "PRODUCT";
+    public static final String INVOKER = "INVOKER";
 }

@@ -23,11 +23,12 @@ public class MenuController {
     @FXML
     void switchToNewPurchase(ActionEvent event) {
 
-        BorderPane root = UserNamePwdAuthenticationService.getRoot();
+
 
         try {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/order.fxml"));
-            root.setCenter(paneOne);
+
+            setPane(paneOne);
 
             System.out.println("switchToNewPurchase");
 
@@ -36,15 +37,20 @@ public class MenuController {
         }
     }
 
+    private void setPane(AnchorPane paneOne) {
+        BorderPane root = UserNamePwdAuthenticationService.getRoot();
+        root.setCenter(paneOne);
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.sizeToScene();
+    }
+
 
     @FXML
     void switchToRegisterProduct(ActionEvent event) {
 
-        BorderPane root = UserNamePwdAuthenticationService.getRoot();
-
         try {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/products.fxml"));
-            root.setCenter(paneOne);
+            setPane(paneOne);
 
             System.out.println("switchToRegisterProduct");
 
@@ -58,12 +64,9 @@ public class MenuController {
 
     @FXML
     void switchToManageStock(ActionEvent event) {
-        BorderPane root = UserNamePwdAuthenticationService.getRoot();
-
         try {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/stock.fxml"));
-            root.setCenter(paneOne);
-
+            setPane(paneOne);
             System.out.println("switchToManageStock");
 
         } catch (IOException e) {

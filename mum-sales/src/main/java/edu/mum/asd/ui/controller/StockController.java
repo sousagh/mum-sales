@@ -7,9 +7,11 @@ import edu.mum.asd.framework.di.BaseController;
 import edu.mum.asd.service.ProductService;
 import edu.mum.asd.ui.util.ApplicationConstants;
 import edu.mum.asd.ui.util.SearchTableEntry;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,7 +53,7 @@ public class StockController extends BaseController {
     private ObservableList<SearchTableEntry> data;
 
     @FXML
-    public void onEnter(ActionEvent ae){
+    public void onEnter(){
         System.out.println(searchProduct.getText()) ;
         List<Product> products = productService.findByName(searchProduct.getText());
 
@@ -83,11 +86,21 @@ public class StockController extends BaseController {
 
                     ApplicationContext.getInstance().putExtraParam(ApplicationConstants.PRODUCT, rowData);
                     try {
-
                         Parent root =  FXMLLoader.load(getClass().getResource("/stock-popup.fxml"));
                         Stage stage = new Stage();
                         stage.setTitle("Details");
                         stage.setScene(new Scene(root));
+
+                        stage.setOnHiding( evt -> {
+                                Platform.runLater(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        StockController.this.onEnter();
+                                    }
+                                });
+                            });
+
                         stage.show();
 
                     } catch (IOException e) {

@@ -1,6 +1,7 @@
 package edu.mum.asd.framework.data.read;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -10,6 +11,7 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -30,6 +32,20 @@ public class QueryAdapterImpl implements QueryAdapter {
         this.collection = collection;
         this.filters = new ArrayList<>();
         this.type = type;
+    }
+
+    @Override
+    public QueryAdapter lt(String key, Object date)
+    {
+        filters.add(Filters.lte(key, date));
+        return this;
+    }
+
+    @Override
+    public QueryAdapter gt(String key, Object date)
+    {
+        filters.add(Filters.gte(key, date));
+        return this;
     }
 
     @Override
@@ -76,8 +92,10 @@ public class QueryAdapterImpl implements QueryAdapter {
             documents =  collection.find();
         }
         else{
-            documents =  collection.find(Filters.and(filters));
+            documents =  collection.find(Filters.and(this.filters));
         }
+
+
 
         documents.forEach((Consumer<? super Document>) doc ->{
             try{
@@ -90,7 +108,6 @@ public class QueryAdapterImpl implements QueryAdapter {
                 e.printStackTrace();
             }
         });
-
         return list;
     }
 }

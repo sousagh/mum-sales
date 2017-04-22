@@ -86,18 +86,18 @@ SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
     public void onClick(ActionEvent ae) {
 
         List<Order> orders=orderService.findOrderByDate(startDate, endDate);
-
+        System.out.println("Amount::::"+orders);
         global_total=0;
         reporttext="";
         for (Order order:orders) {
             total=0;
             reporttext+="\n\nOrder: "+order.getDate()+"\n";
             System.out.println(reporttext);
+            System.out.println("Aaamount::::"+order.getDate());
             for (OrderItem orderItem: order.getItems()
-                    ) {
+                    ) {System.out.println("Amount::::"+orderItem.getAmount());
                 total+=orderItem.getAmount()*orderItem.getProduct().getPrice();
                 reporttext+=orderItem.getProduct().getName()+"->     "+orderItem.getAmount()+" x "+orderItem.getProduct().getPrice()+" = "+orderItem.getAmount()*orderItem.getProduct().getPrice()+"\n";
-
             }
             reporttext+="\nTOTAL:   "+total;
             global_total+=total;

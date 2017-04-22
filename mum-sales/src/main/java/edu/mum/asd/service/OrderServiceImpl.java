@@ -11,6 +11,7 @@ import edu.mum.asd.framework.data.read.QueryAdapter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by gustavosousa on 4/19/17.
@@ -42,13 +43,34 @@ public class OrderServiceImpl implements OrderService{
             productRepository.save(p);
         }
     }
-
+   // List<Order> orders=null;
     @Override
     public List<Order> findOrderByDate(Date startDate, Date endDate)
     {
+        //QueryAdapter adapter = orderRepository.createQueryAdapter();
+       /* Optional<Order> orders = adapter
+                .lt("date", startDate)
+                .gt("date", endDate)
+                .find();*/
+
         QueryAdapter adapter = orderRepository.createQueryAdapter();
-        System.out.println("shocked you "+adapter.find());
-        List<Order> orders=adapter.find();
-        return orders;
+//System.out.print("66666666666666666666666666666"+adapter.lt("date", startDate).gt("date", endDate).find());
+        return adapter
+                .lt("date", endDate)
+                .gt("date", startDate)
+                .find();
+
+        //.regex("name", criterion).find();
+
+        //orders=adapter.find();
+
+       /* for (Order order: orders
+             ) {
+            if(order.getDate().compareTo(startDate)>=0 && order.getDate().compareTo(endDate)<=0)
+                System.out.println("ooooooo"+order.getDate());
+        }*/
+//somefunction(date, date, orders)
+        //return orders;
+        //return null;
     }
 }

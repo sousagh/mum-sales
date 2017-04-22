@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService
     public void removeProduct(Product product)
     {
             repository.remove(product);
-System.out.println("end of removeProduct!!");
+            System.out.println("end of removeProduct!!");
     }
 
     @Override

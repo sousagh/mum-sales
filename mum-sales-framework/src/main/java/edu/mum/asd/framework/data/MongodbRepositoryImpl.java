@@ -65,14 +65,11 @@ public class MongodbRepositoryImpl<T extends StorableEntity> implements Reposito
 
 
     public void remove(T object) {
-System.out.println("id: "+object.getId()+" "+object);
+//System.out.println("id: "+object.getId()+" "+object);
 
             if (object.getId() != null){
                 collection.deleteOne(eq("_id", new ObjectId(object.getId())));
-                System.out.println("nnnnnnnnnnnnnn");
             }
-        //collection.deleteOne(eq("name", );
-        System.out.println("mmmmmmmmmmmmmm");
     }
 
     @Override

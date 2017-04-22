@@ -8,66 +8,78 @@ import edu.mum.asd.framework.di.AutoInjected;
 import edu.mum.asd.framework.di.BaseController;
 import edu.mum.asd.framework.security.UserData;
 import edu.mum.asd.service.ProductService;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
 import java.util.Optional;
+
 /*
  * Created by gustavosousa on 4/17/17.
  */
-public class ProductController extends BaseController{
+public class ProductController extends BaseController {
 
     @AutoInjected
     private ProductService productService;
 
-    @DataAccess(collection = Product.class)
-    private Repository repository;
-
     @FXML
-    void test() {
-        System.out.println("ProductController"+button7.getText());
-    }
-
+    private Label errorMessage;
     @FXML
-    private Label label;
-    //@FXML
-    private Button button7;
+    private Label successMessage;
+
     @FXML
     private TextField quantity;
+
     @FXML
     private TextField price;
+
     @FXML
     private TextField new_product;
+
     @FXML
     private TextField description;
 
     @FXML
-    void add_function()
-    {
-        System.out.println("add product");
+    private void initialize(){
+        this.quantity.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    ProductController.this.quantity.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
 
-        System.out.println("Quantity: "+quantity.getText());
-        System.out.println("Price: "+price.getText());
-        System.out.println("new_product: "+new_product.getText());
-        System.out.println("description: "+description.getText());
+        this.price.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    ProductController.this.price.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    }
 
-        QueryAdapter adapter = repository.createQueryAdapter();
+    @FXML
+    public void addFunction() {
 
-        Optional<UserData> user = adapter
-                .eq("name", new_product.getText())
-                .findOne();
+        boolean success = productService.addProduct(new_product.getText(), description.getText(), Integer.parseInt(price.getText()), Integer.parseInt(quantity.getText()));
 
-        System.out.println(user.isPresent());
-
-        if(user.isPresent())
-        {
-            label.setText("Already present!");
-            label.setVisible(true);
-        }
-        else
-        {
+        if (!success) {
+            errorMessage.setText("Already present!");
+            errorMessage.setVisible(true);
+            successMessage.setVisible(false);
+        } else {
             productService.addProduct(new_product.getText(), description.getText(), Integer.parseInt(price.getText()), Integer.parseInt(quantity.getText()));
-            label.setText("Successfully added!");
-            label.setVisible(true);
+
+            errorMessage.setVisible(false);
+            successMessage.setText("Successfully added!");
+            successMessage.setVisible(true);
+            new_product.setText("");
+            description.setText("");
+            price.setText("");
+            quantity.setText("");
         }
     }
 }

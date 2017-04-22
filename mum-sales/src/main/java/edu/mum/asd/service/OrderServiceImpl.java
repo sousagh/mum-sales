@@ -43,34 +43,38 @@ public class OrderServiceImpl implements OrderService{
             productRepository.save(p);
         }
     }
-   // List<Order> orders=null;
+
     @Override
-    public List<Order> findOrderByDate(Date startDate, Date endDate)
+    public String findOrderByDate(Date startDate, Date endDate)
     {
-        //QueryAdapter adapter = orderRepository.createQueryAdapter();
-       /* Optional<Order> orders = adapter
-                .lt("date", startDate)
-                .gt("date", endDate)
-                .find();*/
 
         QueryAdapter adapter = orderRepository.createQueryAdapter();
-//System.out.print("66666666666666666666666666666"+adapter.lt("date", startDate).gt("date", endDate).find());
-        return adapter
-                .lt("date", endDate)
-                .gt("date", startDate)
+        List<Order> orders = adapter
+                .lt("date", endDate.getTime())
+                .gt("date", startDate.getTime())
                 .find();
 
-        //.regex("name", criterion).find();
 
-        //orders=adapter.find();
+        double globalTotal = 0;
+        StringBuilder reporttext = new StringBuilder();
+        for (Order order : orders) {
 
-       /* for (Order order: orders
-             ) {
-            if(order.getDate().compareTo(startDate)>=0 && order.getDate().compareTo(endDate)<=0)
-                System.out.println("ooooooo"+order.getDate());
-        }*/
-//somefunction(date, date, orders)
-        //return orders;
-        //return null;
+            double total = 0;
+
+            reporttext.append("Order: " + order.getDate() + "\n");
+
+            for (OrderItem orderItem : order.getItems()
+                    ) {
+                total += orderItem.getAmount() * orderItem.getProduct().getPrice();
+                reporttext.append(orderItem.getProduct().getName() + " ->     " + orderItem.getAmount() + " x " + orderItem.getProduct().getPrice() + " = " + orderItem.getAmount() * orderItem.getProduct().getPrice() + "\n");
+            }
+            reporttext.append("\nTOTAL:   " + total + "\n\n");
+            globalTotal += total;
+        }
+        reporttext.append("\n\n Global total: " + globalTotal);
+
+
+        return reporttext.toString();
+
     }
 }

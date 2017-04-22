@@ -22,7 +22,8 @@
       <TextField fx:id="price" layoutX="279.0" layoutY="173.0" />
       <Label layoutX="167.0" layoutY="221.0" text="Description:" />
       <TextField fx:id="description" layoutX="279.0" layoutY="217.0" />
-      <Button fx:id="add_product" layoutX="340.0" layoutY="317.0" mnemonicParsing="false" onAction="#add_function" text="Add product" />
-      <Label fx:id="label" layoutX="240.0" layoutY="312.0" text="Successfully added" visible="false" />
+      <Button fx:id="add_product" layoutX="340.0" layoutY="317.0" mnemonicParsing="false" onAction="#addFunction" text="Add product" />
+      <Label fx:id="errorMessage" layoutX="205.0" layoutY="273.0" prefHeight="17.0" prefWidth="159.0" textFill="#cd2724" />
+      <Label fx:id="successMessage" layoutX="193.0" layoutY="273.0" textFill="#44b92d" />
    </children>
 </AnchorPane>

@@ -18,8 +18,8 @@
                </font>
             </Text>
             <Button fx:id="generate" layoutX="469.0" layoutY="68.0" mnemonicParsing="false" onAction="#onClick" text="Generate Report" />
-            <DatePicker fx:id="start" layoutX="28.0" layoutY="68.0" onAction="#onChange1" />
-            <DatePicker fx:id="end" layoutX="240.0" layoutY="68.0" onAction="#onChange2" />
+            <DatePicker fx:id="start" layoutX="28.0" layoutY="68.0"  />
+            <DatePicker fx:id="end" layoutX="240.0" layoutY="68.0" />
             <Text layoutX="240.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date:" />
             <TextArea fx:id="report" editable="false" layoutX="28.0" layoutY="106.0" prefHeight="267.0" prefWidth="545.0" />
          </children>

@@ -13,5 +13,5 @@ import java.util.List;
 public interface OrderService {
 
     void placeOrder(Order order, List<Product> products) throws DatabaseException;
-    List<Order> findOrderByDate(Date startDate, Date endDate);
+    String findOrderByDate(Date startDate, Date endDate);
 }

@@ -28,8 +28,19 @@ public class ProductServiceImpl implements ProductService
     @DataAccess(collection = Product.class)
     private Repository repository;
 
-    public void addProduct(String name, String description, double price, int quantity)
+    public boolean addProduct(String name, String description, double price, int quantity)
         {
+            QueryAdapter adapter = repository.createQueryAdapter();
+
+            Optional<UserData> user = adapter
+                    .eq("name", name) .findOne();
+
+            if(user.isPresent()){
+                return false;
+            }
+
+            System.out.println(user.isPresent());
+
             Product prod=new Product();
 
             prod.setDescription(description);
@@ -42,16 +53,7 @@ public class ProductServiceImpl implements ProductService
                 e.printStackTrace();
             }
 
-            QueryAdapter adapter = repository.createQueryAdapter();
-
-            Optional<UserData> user = adapter
-                    .eq("name", prod.getName())
-                    .eq("description", prod.getDescription())
-                    .eq("quantity", prod.getQuantity())
-                    .eq("price", prod.getPrice())
-                    .findOne();
-
-            System.out.println(user.isPresent());
+            return true;
         }
 
     public void removeProduct(Product product)

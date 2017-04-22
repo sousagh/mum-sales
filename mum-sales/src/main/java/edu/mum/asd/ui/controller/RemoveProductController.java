@@ -25,23 +25,15 @@ public class RemoveProductController extends BaseController {
     @AutoInjected
     private ProductService productService;
 
-    @DataAccess(collection = Product.class)
-    private Repository repository;
-
-    /*@FXML
-    void test() {
-        System.out.println("ProductController"+button7.getText());
-    }*/
-
     @FXML
     private Label label;
+
     @FXML
     private TableView<SearchTableEntry> searchTable;
 
     public TextField searchProduct;
     @FXML
     private Button removeProduct;
-
 
     @FXML
     private TableColumn<SearchTableEntry, String> itemDescription;
@@ -53,7 +45,6 @@ public class RemoveProductController extends BaseController {
     private TableColumn<SearchTableEntry, String> itemName;
 
     private ObservableList<SearchTableEntry> data;
-
 
     @FXML
     public void onEnter(ActionEvent ae){
@@ -75,8 +66,6 @@ public class RemoveProductController extends BaseController {
 
         this.data = FXCollections.observableArrayList(list);
         this.searchTable.setItems(this.data);
-        System.out.println("list: "+products);
-        System.out.println("end of onEnter");
     }
 
     @FXML

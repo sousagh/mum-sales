@@ -1,9 +1,6 @@
 package edu.mum.asd.framework;
 
-import edu.mum.asd.framework.data.DataAccess;
-import edu.mum.asd.framework.data.MongoAccessImpl;
-import edu.mum.asd.framework.data.MongodbRepositoryImpl;
-import edu.mum.asd.framework.data.Repository;
+import edu.mum.asd.framework.data.*;
 import edu.mum.asd.framework.di.AutoInjected;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.exception.ApplicationContextException;
@@ -25,7 +22,7 @@ public class ApplicationContext {
 
     private static String scanPath = null;
 
-    private final MongoAccessImpl mongoAccess;
+    private final MongoAccess mongoAccess;
 
     private final FormValidator formValidator;
 

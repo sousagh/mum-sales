@@ -83,9 +83,5 @@ public class OrderItemController extends BaseController {
         } else {
             messageText.setText(validationResult.getErrors().get(0).getMessage());
         }
-
-
-
-
     }
 }

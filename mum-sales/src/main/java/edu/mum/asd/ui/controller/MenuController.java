@@ -97,6 +97,8 @@ public class MenuController {
 
             System.out.println("switchToRemoveProduct");
 
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }

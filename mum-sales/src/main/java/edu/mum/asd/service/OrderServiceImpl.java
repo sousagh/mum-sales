@@ -1,12 +1,15 @@
 package edu.mum.asd.service;
 
 import edu.mum.asd.domain.Order;
+import edu.mum.asd.domain.OrderItem;
 import edu.mum.asd.domain.Product;
 import edu.mum.asd.framework.data.DataAccess;
 import edu.mum.asd.framework.data.Repository;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.exception.DatabaseException;
+import edu.mum.asd.framework.data.read.QueryAdapter;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,5 +41,14 @@ public class OrderServiceImpl implements OrderService{
         for(Product p : products){
             productRepository.save(p);
         }
+    }
+
+    @Override
+    public List<Order> findOrderByDate(Date startDate, Date endDate)
+    {
+        QueryAdapter adapter = orderRepository.createQueryAdapter();
+        System.out.println("shocked you "+adapter.find());
+        List<Order> orders=adapter.find();
+        return orders;
     }
 }

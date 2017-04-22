@@ -70,8 +70,14 @@ public class QueryAdapterImpl implements QueryAdapter {
     public <T extends StorableEntity> List<T> find() {
 
         List<T> list = new ArrayList<>();
+        FindIterable<Document> documents;
 
-        FindIterable<Document> documents =  collection.find(Filters.and(filters));
+        if(this.filters.isEmpty()){
+            documents =  collection.find();
+        }
+        else{
+            documents =  collection.find(Filters.and(filters));
+        }
 
         documents.forEach((Consumer<? super Document>) doc ->{
             try{

@@ -4,6 +4,7 @@ import edu.mum.asd.domain.Order;
 import edu.mum.asd.domain.Product;
 import edu.mum.asd.framework.exception.DatabaseException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,4 +13,5 @@ import java.util.List;
 public interface OrderService {
 
     void placeOrder(Order order, List<Product> products) throws DatabaseException;
+    List<Order> findOrderByDate(Date startDate, Date endDate);
 }

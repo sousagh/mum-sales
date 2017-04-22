@@ -195,5 +195,4 @@ public class OrderController extends BaseController {
         this.searchData = FXCollections.observableArrayList(list);
         this.searchTable.setItems(this.searchData);
     }
-
 }

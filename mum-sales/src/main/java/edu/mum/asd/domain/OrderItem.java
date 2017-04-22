@@ -7,6 +7,8 @@ public class OrderItem {
     private Product product;
     private int amount;
 
+    public OrderItem(){}
+
     public OrderItem(Product product, int amount) {
         this.product = product;
         this.amount = amount;

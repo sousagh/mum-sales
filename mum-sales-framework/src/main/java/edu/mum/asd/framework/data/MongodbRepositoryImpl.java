@@ -9,6 +9,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import edu.mum.asd.framework.data.read.QueryAdapter;
 import edu.mum.asd.framework.data.read.QueryAdapterImpl;
+import edu.mum.asd.framework.data.read.TimeMeasureQueryAdapterImpl;
 import edu.mum.asd.framework.di.InjectableComponent;
 import edu.mum.asd.framework.domain.StorableEntity;
 import edu.mum.asd.framework.exception.DatabaseException;
@@ -32,7 +33,7 @@ public class MongodbRepositoryImpl<T extends StorableEntity> implements Reposito
 
     private MongoCollection<Document> collection;
 
-    public MongodbRepositoryImpl(MongoCollection<Document> collection, Class<?> aClass){
+    public MongodbRepositoryImpl(MongoCollection<Document> collection, Class<?> aClass) {
         this.collection = collection;
         this.aClass = aClass;
     }
@@ -49,13 +50,13 @@ public class MongodbRepositoryImpl<T extends StorableEntity> implements Reposito
             final String userJson = mapper.writeValueAsString(object);
             final Document objectDoc = Document.parse(userJson);
 
-            if (object.getId() != null){
+            if (object.getId() != null) {
 
                 ObjectId objectId = new ObjectId(object.getId());
                 objectDoc.append("_id", objectId);
                 collection.replaceOne(eq("_id", objectId), objectDoc);
 
-            } else{
+            } else {
                 collection.insertOne(objectDoc);
             }
         } catch (JsonProcessingException e) {
@@ -65,17 +66,17 @@ public class MongodbRepositoryImpl<T extends StorableEntity> implements Reposito
 
 
     public void remove(T object) {
-//System.out.println("id: "+object.getId()+" "+object);
 
-            if (object.getId() != null){
-                collection.deleteOne(eq("_id", new ObjectId(object.getId())));
-            }
+        if (object.getId() != null) {
+            collection.deleteOne(eq("_id", new ObjectId(object.getId())));
+        }
     }
 
     @Override
     public QueryAdapter createQueryAdapter() {
 
-        return new QueryAdapterImpl(collection, aClass);
+        QueryAdapterImpl queryAdapter = new QueryAdapterImpl(collection, aClass);
+        return new TimeMeasureQueryAdapterImpl(queryAdapter);
     }
 
 }

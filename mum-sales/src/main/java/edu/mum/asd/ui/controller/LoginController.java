@@ -39,7 +39,6 @@ public class LoginController extends BaseController{
 
         ValidationResult validationResult = this.validate();
 
-        System.out.println(validationResult);
         if(validationResult.valid()) {
 
             message.setText("");

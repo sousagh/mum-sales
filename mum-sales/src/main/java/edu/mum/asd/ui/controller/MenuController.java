@@ -23,14 +23,9 @@ public class MenuController {
     @FXML
     void switchToNewPurchase(ActionEvent event) {
 
-
-
         try {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/order.fxml"));
-
             setPane(paneOne);
-
-            System.out.println("switchToNewPurchase");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,8 +47,6 @@ public class MenuController {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/products.fxml"));
             setPane(paneOne);
 
-            System.out.println("switchToRegisterProduct");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +58,6 @@ public class MenuController {
         try {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/stock.fxml"));
             setPane(paneOne);
-            System.out.println("switchToManageStock");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,8 +72,6 @@ public class MenuController {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/removeProducts.fxml"));
             root.setCenter(paneOne);
 
-            System.out.println("switchToRemoveProduct");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,10 +84,6 @@ public class MenuController {
         try {
             AnchorPane paneOne = FXMLLoader.load(getClass().getResource("/produceReport.fxml"));
             root.setCenter(paneOne);
-
-            System.out.println("switchToRemoveProduct");
-
-
 
         } catch (IOException e) {
             e.printStackTrace();

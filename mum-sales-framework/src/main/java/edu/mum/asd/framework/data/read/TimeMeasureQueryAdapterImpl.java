@@ -36,7 +36,7 @@ public class TimeMeasureQueryAdapterImpl implements QueryAdapter{
 
     @Override
     public QueryAdapter gt(String name, Object o) {
-        adapter.lt(name, o);
+        adapter.gt(name, o);
         return this;
     }
 

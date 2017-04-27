@@ -50,8 +50,8 @@ public class OrderServiceImpl implements OrderService{
 
         QueryAdapter adapter = orderRepository.createQueryAdapter();
         List<Order> orders = adapter
-                .lt("date", endDate.getTime())
-                .gt("date", startDate.getTime())
+                .lt("date", endDate.getTime()+ (1000 * 60 * 60 * 60 * 24) -1)
+                .gt("date", startDate.getTime()  )
                 .find();
 
 

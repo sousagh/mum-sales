@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import java.lang.String;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -37,17 +38,24 @@ public class ProduceReportController extends BaseController {
     @AutoInjected
     private OrderService orderService;
 
-    private Date startDate, endDate;
+
+    @FXML
+    public void initialize(){
+        this.start.setValue( LocalDate.now());
+        this.end.setValue( LocalDate.now());
+    }
 
     public void onClick(ActionEvent ae) {
+
+        Date startDate, endDate;
 
         try {
             startDate = formatter.parse(start.getValue().toString());
             endDate = formatter.parse(end.getValue().toString());
+            report.setText(orderService.findOrderByDate(startDate, endDate));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        report.setText(orderService.findOrderByDate(startDate, endDate));
     }
 }
